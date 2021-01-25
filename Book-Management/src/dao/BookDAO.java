@@ -1,5 +1,7 @@
 package dao;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import connection.ConnectionManager;
 import model.Author;
@@ -71,7 +75,7 @@ public class BookDAO {
         }
         catch (Exception ex) 
         {
-            System.out.println("failed: An Exception has occurred! " + ex);
+        	JOptionPane.showMessageDialog(null,"Data already exist!");
         }return "Oops.. Something went wrong there..!";
 	}
 	
@@ -171,14 +175,15 @@ public class BookDAO {
         }return "Oops.. Something went wrong there..!";
 	}
     
-    public void deleteBook(String isbn) {
+    public void deleteBook(String isbn) throws FileNotFoundException {
+    	
 	     try {
 	     con = ConnectionManager.getConnection();
 	     ps=con.prepareStatement("delete from book where isbn=?");
 	     ps.setString(1,isbn);
 	     ps.executeUpdate();
 	     } catch (SQLException e) {
-	         System.out.println("failed: tak boleh delete data customer " + e);
+	    	 JOptionPane.showMessageDialog(null,"Data cannot delete");
 	     }
 	 }
 }

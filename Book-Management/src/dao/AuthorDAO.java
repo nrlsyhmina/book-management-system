@@ -1,6 +1,8 @@
 package dao;
 
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import connection.ConnectionManager;
 import model.Author;
 
@@ -63,7 +68,7 @@ public class AuthorDAO {
         }
         catch (Exception ex) 
         {
-            System.out.println("failed: An Exception has occurred! " + ex);
+        	JOptionPane.showMessageDialog(null,"Data already exist!");
         }return "Oops.. Something went wrong there..!";
 	}
 	
@@ -137,7 +142,7 @@ public class AuthorDAO {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		String date = dateFormat.format(aDOB);
         
-        String searchQuery = "UPDATE author SET aDOB= '" + java.sql.Date.valueOf(date) + "', uIC='" + uIC + "', , aIC='" + aIC + "', aName='" + aName +"', aGender='" + aGender +"' WHERE aIC= '" + aIC + "'";
+        String searchQuery = "UPDATE author SET aDOB= '" + java.sql.Date.valueOf(date) + "', aIC='" + aIC + "',  aName='" + aName +"', aGender='" + aGender +"' WHERE aIC= '" + aIC + "'";
         //System.out.println(searchQuery);
         
 		try 
@@ -156,14 +161,14 @@ public class AuthorDAO {
         }return "Oops.. Something went wrong there..!";
 	}
     
-    public void deleteAuthor(String aIC) {
+    public void deleteAuthor(String aIC) throws FileNotFoundException {
 	     try {
 	     con = ConnectionManager.getConnection();
 	     ps=con.prepareStatement("delete from author where aIC=?");
 	     ps.setString(1,aIC);
 	     ps.executeUpdate();
 	     } catch (SQLException e) {
-	         System.out.println("failed: tak boleh delete data customer " + e);
+	    	 JOptionPane.showMessageDialog(null,"Data cannot delete");
 	     }
 	 }
 	

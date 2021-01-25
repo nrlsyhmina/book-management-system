@@ -1,9 +1,13 @@
 package dao;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
+
+import javax.swing.JOptionPane;
 
 import connection.ConnectionManager;
 import model.Author;
@@ -127,8 +131,9 @@ public class UserDAO {
 	
 	//Add data
 	
-		public String addUser(User authorBean)
+		public String addUser(User authorBean) throws FileNotFoundException
 		{
+			
 			uIC = authorBean.getuIC();
 			uName = authorBean.getuName();
 			uEmail = authorBean.getuEmail();
@@ -160,7 +165,7 @@ public class UserDAO {
 	        }
 	        catch (Exception ex) 
 	        {
-	            System.out.println("failed: An Exception has occurred! " + ex);
+	        	JOptionPane.showMessageDialog(null,"Data already exist!");
 	        }return "Oops.. Something went wrong there..!";
 		}
 		
@@ -197,8 +202,8 @@ public class UserDAO {
 			uEmail = userBean.getuEmail();
 			uPassword = userBean.getuPassword();
 	        
-	        String searchQuery = "UPDATE bkuser SET uIC='" + uIC + "', , uName='" + uName + "', uEmail='" + uEmail +"', uPassword='" + uPassword +"' WHERE uIC= '" + uIC + "'";
-	        //System.out.println(searchQuery);
+	        String searchQuery = "UPDATE bkuser SET uIC='" + uIC + "', uName='" + uName + "', uEmail='" + uEmail +"', uPassword='" + uPassword +"' WHERE uIC= '" + uIC + "'";
+	        System.out.println(searchQuery);
 	        
 			try 
 	        {
@@ -216,14 +221,15 @@ public class UserDAO {
 	        }return "Oops.. Something went wrong there..!";
 		}
 	    
-	    public void deleteUser(String uIC) {
+	    public void deleteUser(String uIC) throws FileNotFoundException {
+	    	
 		     try {
 		     con = ConnectionManager.getConnection();
 		     ps=con.prepareStatement("delete from bkuser where uIC=?");
 		     ps.setString(1,uIC);
 		     ps.executeUpdate();
 		     } catch (SQLException e) {
-		         System.out.println("failed: tak boleh delete data customer " + e);
+		    	 JOptionPane.showMessageDialog(null,"Data cannot delete");
 		     }
 		 }
 		

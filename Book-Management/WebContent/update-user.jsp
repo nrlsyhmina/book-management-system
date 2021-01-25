@@ -34,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.jsp">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -229,7 +229,7 @@
                                         placeholder="Pasword" id="myInput" value="<c:out value="${user.uPassword}"/>" required>
                                         <input type="checkbox" onclick="myFunction()">Show Password
                                 </div>
-                                <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" onclick="ConfirmUpdate()">
+                                <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" onclick="return confirm('Are you sure you want to update?')">
                             </form>
                                 </div>
                             </div>

@@ -33,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.jsp">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -243,7 +243,7 @@
 							             <td><a href="UpdatePublisherController?action=update&pIC=<c:out
             value="${publisher.pIC}" />" class="w3-btn w3-green w3-round-large" >Update</a></td>
               <td><a href="DeletePublisherController?action=delete&pIC=<c:out
-            value="${publisher.pIC}" />" class="w3-btn w3-red w3-round-large" onclick="ConfirmDelete()">Delete</a></td>
+            value="${publisher.pIC}" />" class="w3-btn w3-red w3-round-large" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
                                         </tr>
                                         </c:forEach>
                                         
@@ -304,16 +304,7 @@
     </div>
 
     <script src="js.js"></script>
-    <script>
-    function ConfirmDelete()
-    {
-      var x = confirm("Are you sure you want to delete?");
-      if (x)
-          return true;
-      else
-        return false;
-    }
-    </script>
+    
 
 </body>
 </html>

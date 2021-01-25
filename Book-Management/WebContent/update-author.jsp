@@ -30,11 +30,11 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.jsp">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -150,7 +150,6 @@
 
         </ul>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -232,7 +231,7 @@
                                     <input type="text" class="form-control form-control-user" name="aGender"
                                         placeholder="Gender" value="<c:out value="${author.aGender}"/>" required>
                                 </div>
-                                <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" onclick="ConfirmUpdate()">
+                                <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" onclick="return confirm('Are you sure you want to update?')">
                             </form>
                                 </div>
                             </div>

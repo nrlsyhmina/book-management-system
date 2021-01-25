@@ -1,5 +1,7 @@
 package dao;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import connection.ConnectionManager;
 import model.Publisher;
@@ -40,7 +44,7 @@ public class PublisherDAO {
         }
         catch (Exception ex) 
         {
-            System.out.println("failed: An Exception has occurred! " + ex);
+        	JOptionPane.showMessageDialog(null,"Data already exist!");
         }return "Oops.. Something went wrong there..!";
 	}
 	
@@ -117,14 +121,15 @@ public class PublisherDAO {
 		return publisher;
 	}
 	
-	public void deletePublisher(String pIC) {
+	public void deletePublisher(String pIC) throws FileNotFoundException {
+		
 	     try {
 	     con = ConnectionManager.getConnection();
 	     ps=con.prepareStatement("delete from publisher where pIC=?");
 	     ps.setString(1,pIC);
 	     ps.executeUpdate();
 	     } catch (SQLException e) {
-	         System.out.println("failed: tak boleh delete data customer " + e);
+	    	 JOptionPane.showMessageDialog(null,"Data cannot delete");
 	     }
 	    }
 
